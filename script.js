@@ -130,7 +130,8 @@ var upperUse = confirm("Do you want to use upper case characters?")
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
 }
 
 // Function to generate password with user input

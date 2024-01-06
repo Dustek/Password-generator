@@ -125,7 +125,7 @@ var upperUse = confirm("Do you want to use upper case characters?")
     upper: upperUse,
   }
   
-  console.log (passwordObject)
+  return passwordObject
 }
 
 // Function for getting a random element from an array
@@ -133,16 +133,31 @@ function getRandom(arr) {
   var randomIndex = Math.floor(Math.random() * arr.length);
   return arr[randomIndex];
 }
+getRandom(upperCasedCharacters)
 
 // Function to generate password with user input
 function generatePassword() {
-
 
 var passwordOptions = getPasswordOptions();
 //   if (passwordOptions === null) {
 //     return null;
 //   } {
-  return "GeneratedPassword123";
+
+
+console.log(passwordOptions.size)
+
+
+
+var passwordString = ""
+
+for (var index = 0; index < passwordOptions.size; index++) {
+  passwordString += getRandom(upperCasedCharacters);
+}
+
+console.log(passwordString)
+
+
+return "GeneratedPassword123";
 }
 
 // Get references to the #generate element
@@ -159,3 +174,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
+

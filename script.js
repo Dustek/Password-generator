@@ -109,23 +109,14 @@ function getPasswordOptions() {
   }
 
 
-var specialUse = confirm("Do you want to use special characters?")
-var numericUse = confirm("Do you want to use numbers?")
-var lowerUse = confirm("Do you want to use lower case characters?")
-var upperUse = confirm("Do you want to use upper case characters?")
-
-
-
-
   var passwordObject = {
     size: passwordLength,
-    special: specialUse,
-    numeric: numericUse,
-    lower: lowerUse,
-    upper: upperUse,
+    special: confirm("Do you want to use special characters?"),
+    numeric: confirm("Do you want to use numbers?"),
+    lower: confirm("Do you want to use lower case characters?"),
+    upper: confirm("Do you want to use upper case characters?"),
   }
-  
-  return passwordObject
+return passwordObject;
 }
 
 // Function for getting a random element from an array
@@ -143,15 +134,24 @@ var passwordOptions = getPasswordOptions();
 //     return null;
 //   } {
 
-
-console.log(passwordOptions.size)
-
+var combinedCharacters = []
+if (passwordOptions.special === true) {
+  combinedCharacters = Array.from(combinedCharacters).concat(specialCharacters);
+}
+if (passwordOptions.numeric === true) {
+  combinedCharacters = Array.from(combinedCharacters).concat(numericCharacters);
+}
+if (passwordOptions.lower === true) {
+  combinedCharacters = Array.from(combinedCharacters).concat(lowerCasedCharacters);
+}
+if (passwordOptions.upper === true) {
+  combinedCharacters = Array.from(combinedCharacters).concat(upperCasedCharacters);
+}
 
 
 var passwordString = ""
-
 for (var index = 0; index < passwordOptions.size; index++) {
-  passwordString += getRandom(upperCasedCharacters);
+  passwordString += getRandom(combinedCharacters);
 }
 
 console.log(passwordString)

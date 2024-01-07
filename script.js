@@ -109,13 +109,25 @@ function getPasswordOptions() {
   }
 
 
+  var special = confirm("Do you want to use special characters?");
+  var numeric = confirm("Do you want to use numbers?");
+  var lower = confirm("Do you want to use lower case characters?");
+  var upper = confirm("Do you want to use upper case characters?");
+
+  // Validate that at least one confirmation is true
+  if (!(special || numeric || lower || upper)) {
+    alert("At least one option must be selected. Please try again.");
+    return null;
+  }
+
   var passwordObject = {
     size: passwordLength,
-    special: confirm("Do you want to use special characters?"),
-    numeric: confirm("Do you want to use numbers?"),
-    lower: confirm("Do you want to use lower case characters?"),
-    upper: confirm("Do you want to use upper case characters?"),
-  }
+    special: special,
+    numeric: numeric,
+    lower: lower,
+    upper: upper,
+  };
+  
 return passwordObject;
 }
 
@@ -157,7 +169,7 @@ for (var index = 0; index < passwordOptions.size; index++) {
 console.log(passwordString)
 
 
-return "GeneratedPassword123";
+return passwordString;
 }
 
 // Get references to the #generate element

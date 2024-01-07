@@ -91,14 +91,12 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
   var passwordLength = prompt("Please enter password length (8-128")
-
-  
   passwordLength = parseInt(passwordLength);
   if (isNaN(passwordLength)) {
     alert("Invalid input. Please enter a valid number.");
     return null;
   }
-  
+  // Validate that at password length is correct
   if (passwordLength < 8){
     alert("Invalid password length. Please enter a number between 8 and 128")
     return null;
@@ -127,7 +125,7 @@ function getPasswordOptions() {
     lower: lower,
     upper: upper,
   };
-  
+
 return passwordObject;
 }
 
@@ -136,16 +134,12 @@ function getRandom(arr) {
   var randomIndex = Math.floor(Math.random() * arr.length);
   return arr[randomIndex];
 }
-getRandom(upperCasedCharacters)
 
 // Function to generate password with user input
 function generatePassword() {
 
 var passwordOptions = getPasswordOptions();
-//   if (passwordOptions === null) {
-//     return null;
-//   } {
-
+  //Combines arrays based on user choice to create an array to draw from
 var combinedCharacters = []
 if (passwordOptions.special === true) {
   combinedCharacters = Array.from(combinedCharacters).concat(specialCharacters);
@@ -160,14 +154,11 @@ if (passwordOptions.upper === true) {
   combinedCharacters = Array.from(combinedCharacters).concat(upperCasedCharacters);
 }
 
-
+  //Generates password with user options
 var passwordString = ""
 for (var index = 0; index < passwordOptions.size; index++) {
   passwordString += getRandom(combinedCharacters);
 }
-
-console.log(passwordString)
-
 
 return passwordString;
 }
